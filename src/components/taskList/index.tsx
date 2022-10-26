@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { ScrollView, View } from "react-native";
-import { Container, Card, Text } from "./styles";
+import { Checkbox, Button } from "react-native-paper";
+import { Container, CardView, Card, Text, Icon } from "./styles";
+import Ionicons from "@expo/vector-icons/Ionicons";
+
+import { styles } from "./styles";
 
 export interface Task {
   id: number;
@@ -24,9 +28,25 @@ export function TaskList({
       <ScrollView>
         {tasks.map((task) => (
           <View key={task.id}>
-            <Card>
-              <Text>{task.title}</Text>
-            </Card>
+            <View>
+              <Card>
+                <CardView>
+                  <Checkbox
+                    uncheckedColor="cyan"
+                    status={task.done ? "checked" : "unchecked"}
+                    onPress={() => {
+                      toggleTaskDone(task.id);
+                    }}
+                  />
+                  <Text style={task.done ? styles.done : styles.notDone}>
+                    {task.title}
+                  </Text>
+                </CardView>
+                <Button onPress={() => removeTask(task.id)}>
+                  <Icon as={Ionicons} name="trash-outline" size={30}></Icon>
+                </Button>
+              </Card>
+            </View>
           </View>
         ))}
       </ScrollView>
