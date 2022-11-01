@@ -1,10 +1,9 @@
 import styled from "styled-components/native";
 
-export const TextInput = styled.TextInput`
+export const Input = styled.TextInput`
     height: 50px;
     background-color: ${(props) => props.theme.background};
     color: ${(props) => props.theme.text};
-    text-transform: capitalize;
     padding: 10px;
     margin-bottom: 50px;
     border-radius: 5px;

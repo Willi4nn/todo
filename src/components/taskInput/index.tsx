@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { View } from "react-native";
-import { Icon, TextInput } from "./styles";
+import { TextInput, View } from "react-native";
+import { Icon, Input } from "./styles";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 interface TaskInputProps {
@@ -21,7 +21,8 @@ export function TaskInput({ addTask }: TaskInputProps) {
 
   return (
     <View>
-      <TextInput
+      <Input
+        as={TextInput}
         returnKeyType="send"
         value={task}
         onChangeText={setTask}

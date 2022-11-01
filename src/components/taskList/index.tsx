@@ -1,7 +1,7 @@
 import React from "react";
-import { ScrollView, View } from "react-native";
+import { View } from "react-native";
 import { Checkbox, Button } from "react-native-paper";
-import { Container, CardView, Card, Text, Icon } from "./styles";
+import { CardView, Card, Text, Icon } from "./styles";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { styles } from "./styles";
@@ -24,32 +24,32 @@ export function TaskList({
   removeTask,
 }: TasksListProps) {
   return (
-    <Container>
-      <ScrollView>
-        {tasks.map((task) => (
-          <View key={task.id}>
-            <View>
-              <Card>
-                <CardView>
-                  <Checkbox
-                    uncheckedColor="cyan"
-                    status={task.done ? "checked" : "unchecked"}
-                    onPress={() => {
-                      toggleTaskDone(task.id);
-                    }}
-                  />
-                  <Text style={task.done ? styles.done : styles.notDone}>
-                    {task.title}
-                  </Text>
-                </CardView>
-                <Button onPress={() => removeTask(task.id)}>
-                  <Icon as={Ionicons} name="trash-outline" size={30}></Icon>
-                </Button>
-              </Card>
-            </View>
-          </View>
-        ))}
-      </ScrollView>
-    </Container>
+    <View>
+      {tasks.map((task) => (
+        <View key={task.id}>
+          <Card>
+            <CardView>
+              <Checkbox
+                uncheckedColor="cyan"
+                status={task.done ? "checked" : "unchecked"}
+                onPress={() => {
+                  toggleTaskDone(task.id);
+                }}
+              />
+              <Text style={task.done ? styles.done : styles.notDone}>
+                {task.title}
+              </Text>
+            </CardView>
+            <Button
+              style={{ borderRadius: 10 }}
+              color="cyan"
+              onPress={() => removeTask(task.id)}
+            >
+              <Icon as={Ionicons} name="trash-outline" size={24}></Icon>
+            </Button>
+          </Card>
+        </View>
+      ))}
+    </View>
   );
 }
